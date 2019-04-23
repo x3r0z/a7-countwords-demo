@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="sentence-container">
+        <textarea name="container" [(ngModel)]="sentence" rows="5"></textarea>
+        <button type="button" class="btn" disabled=disabled *ngIf="0 == sentence.length">Count Words</button>
+        <button type="button" class="btn" *ngIf="0 < sentence.length" (click)="count()">Count Words</button>
+    </div>
+    <div class="result" *ngIf="results">
+        <div class="count-result">
+            <table class="table" cellpadding=0 cellspacing=0 *ngIf="displayResult">
+                <thead>
+                    <tr>
+                        <th>Word</th>
+                        <th>Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let result of results| keyvalue">
+                        <td>{{result.key}}</td>
+                        <td>{{result.value}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p *ngIf="!displayResult">Not word match found</p>
+        </div>
+        <div class="sentence-search">
+            <p [innerHTML]="lastSentence | matchWord: key"></p>
+        </div>
+    </div>
+
+</div>
